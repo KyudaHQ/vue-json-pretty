@@ -42,6 +42,12 @@
       background-color: @highlight-bg-color-dark;
     }
   }
+
+  &:hover {
+    .@{css-prefix}-actions {
+      display: inline;
+    }
+  }
 }
 
 .@{css-prefix}-node-index {
@@ -53,6 +59,26 @@
 
 .@{css-prefix}-colon {
   white-space: pre;
+}
+
+.@{css-prefix}-actions {
+  display: none;
+  margin-left: 10px;
+  // font-size: 10px;
+  a {
+    cursor: pointer;
+    // font-size: 10px;
+    color: #555;
+  }
+  .@{css-prefix}-actions__divider {
+    // position: relative;
+    // bottom: 2px;
+    // display: inline-block;
+    margin-left: 3px;
+    margin-right: 3px;
+    // font-size: 4px;
+    color: #555;
+  }
 }
 
 .@{css-prefix}-comment {

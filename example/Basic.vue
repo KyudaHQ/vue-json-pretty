@@ -82,6 +82,8 @@
         :show-icon="state.showIcon"
         :show-key-value-space="state.showKeyValueSpace"
         style="position: relative"
+        @copy-value-click="log"
+        @copy-path-click="log"
       >
         <template v-if="state.useRenderNodeKeySlot" #renderNodeKey="{ node, defaultKey }">
           <template v-if="node.key === 'title'">
@@ -162,6 +164,10 @@ export default defineComponent({
       return node.key === 'members';
     };
 
+    function log(node) {
+      console.log(node);
+    }
+
     watch(
       () => state.val,
       newVal => {
@@ -179,6 +185,7 @@ export default defineComponent({
       localDarkMode,
       toggleLocalDarkMode,
       globalDarkModeState,
+      log
     };
   },
 });

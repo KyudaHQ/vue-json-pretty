@@ -114,7 +114,7 @@ export default defineComponent({
     },
   },
 
-  emits: ['nodeClick', 'bracketsClick', 'iconClick', 'selectedChange', 'valueChange'],
+  emits: ['nodeClick', 'copyValueClick', 'copyPathClick', 'bracketsClick', 'iconClick', 'selectedChange', 'valueChange'],
 
   setup(props, { emit }) {
     const dataType = computed<string>(() => getDataType(props.node.content));
@@ -187,6 +187,14 @@ export default defineComponent({
       if (selectable.value && props.selectOnClickNode) {
         emit('selectedChange', props.node);
       }
+    };
+
+    const handleCopyValueClick = () => {
+      emit('copyValueClick', props.node);
+    };
+
+    const handleCopyPathClick = () => {
+      emit('copyPathClick', props.node);
     };
 
     const handleValueEdit = (e: MouseEvent) => {
@@ -291,12 +299,21 @@ export default defineComponent({
               </span>
             )}
 
-            {node.showComma && <span>{','}</span>}
+            {/* {node.showComma && <span>{','}</span>} */}
+
+            {node.type === 'content' &&
+              <span class="vjs-actions">
+                <a onClick={handleCopyPathClick}>Copy Path</a>
+                <span class="vjs-actions__divider"></span>
+                <a onClick={handleCopyValueClick}>Copy Value</a>
+              </span>
+            }
 
             {props.showLength && props.collapsed && (
               <span class="vjs-comment"> // {node.length} items </span>
             )}
           </span>
+
         </div>
       );
     };

@@ -80,6 +80,8 @@ export default defineComponent({
 
   emits: [
     'nodeClick',
+    'copyValueClick',
+    'copyPathClick',
     'bracketsClick',
     'iconClick',
     'selectedChange',
@@ -216,6 +218,14 @@ export default defineComponent({
       emit('nodeClick', node);
     };
 
+    const handleCopyValue = (node: NodeDataType) => {
+      emit('copyValueClick', node.content);
+    };
+
+    const handleCopyPath = (node: NodeDataType) => {
+      emit('copyPathClick', node.path);
+    };
+
     const updateCollapsedPaths = (collapsed: boolean, path: string) => {
       if (collapsed) {
         state.hiddenPaths = {
@@ -303,6 +313,8 @@ export default defineComponent({
             renderNodeKey={renderNodeKey}
             renderNodeValue={renderNodeValue}
             onNodeClick={handleNodeClick}
+            onCopyValueClick={handleCopyValue}
+            onCopyPathClick={handleCopyPath}
             onBracketsClick={handleBracketsClick}
             onIconClick={handleIconClick}
             onSelectedChange={handleSelectedChange}
